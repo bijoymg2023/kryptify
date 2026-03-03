@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File Integrity Monitor — SHA-256 Real-Time Scanner</title>
+  <meta name="description" content="Enterprise-grade file integrity monitoring tool. Detects file additions, modifications, and deletions using SHA-256 hashing." />
+  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>" />
+</head>
+<body>
+  <div class="app-wrapper">
+    <div class="container">
+
+      <!-- ====== Header ====== -->
+      <header class="header">
+        <div class="header-inner">
+          <div class="header-icon">🛡️</div>
+          <div class="header-text">
+            <h1>File Integrity Monitor</h1>
+            <p>SHA-256 hash-based real-time file change detection</p>
+          </div>
+          <div class="header-badge">
+            <span class="dot"></span>
+            <span id="baseline-info">No baseline set</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- ====== Integrity Status Bar ====== -->
+      <div id="integrity-bar" class="integrity-status unknown">
+        <span class="status-icon">🔘</span>
+        <span>Set a baseline to begin monitoring</span>
+      </div>
+
+      <!-- ====== Config Bar ====== -->
+      <div class="config-bar">
+        <label for="dir-input">📂 Monitor Directory</label>
+        <input type="text" id="dir-input" placeholder="/path/to/monitored/folder" />
+        <button class="btn btn-outline" id="btn-set-dir">
+          <span class="spinner"></span>
+          <span class="btn-label">Update Path</span>
+        </button>
+      </div>
+
+      <!-- ====== Action Bar ====== -->
+      <div class="action-bar">
+        <button class="btn btn-primary" id="btn-scan">
+          <span class="spinner"></span>
+          <span class="btn-label">🔍 Run Integrity Scan</span>
+        </button>
+        <button class="btn btn-secondary" id="btn-baseline">
+          <span class="spinner"></span>
+          <span class="btn-label">📸 Set Baseline</span>
+        </button>
+      </div>
+
+      <!-- ====== Stats Grid ====== -->
+      <div class="stats-grid">
+        <div class="stat-card cyan">
+          <div class="stat-icon">📁</div>
+          <div class="stat-value" id="stat-files">0</div>
+          <div class="stat-label">Monitored Files</div>
+        </div>
+        <div class="stat-card green">
+          <div class="stat-icon">🔍</div>
+          <div class="stat-value" id="stat-scans">0</div>
+          <div class="stat-label">Total Scans</div>
+        </div>
+        <div class="stat-card amber">
+          <div class="stat-icon">⚡</div>
+          <div class="stat-value" id="stat-alerts">0</div>
+          <div class="stat-label">Alerts Triggered</div>
+        </div>
+        <div class="stat-card red">
+          <div class="stat-icon">🔐</div>
+          <div class="stat-value" id="stat-status">Pending</div>
+          <div class="stat-label">Integrity Status</div>
+        </div>
+      </div>
+
+      <!-- ====== Two-Column: Alerts + History ====== -->
+      <div class="main-grid">
+        <!-- Alert Feed -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <span class="icon">🚨</span> Alert Feed
+            </div>
+            <span class="panel-badge" id="alert-badge">0</span>
+          </div>
+          <div class="panel-body" id="alert-feed">
+            <div class="empty-state">
+              <div class="empty-icon">🛡️</div>
+              <p>No alerts — set a baseline and run a scan</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scan History -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title">
+              <span class="icon">📋</span> Scan History
+            </div>
+            <span class="panel-badge" id="history-badge">0</span>
+          </div>
+          <div class="panel-body" id="scan-history">
+            <div class="empty-state">
+              <div class="empty-icon">📋</div>
+              <p>No scans yet — run your first scan</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== File Table ====== -->
+      <div class="file-table-wrap">
+        <div class="file-table-header">
+          <div class="file-table-title">
+            <span>📄</span> Baseline Files
+          </div>
+          <span class="panel-badge" id="file-count">0</span>
+        </div>
+        <table class="file-table">
+          <thead>
+            <tr>
+              <th>File Path</th>
+              <th>SHA-256 Hash</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="file-table-body">
+            <tr>
+              <td colspan="3" style="text-align:center; padding:32px; color: var(--text-muted);">
+                No baseline files — set a baseline first
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ====== How It Works ====== -->
+      <div class="how-it-works">
+        <h2>⚙️ How It Works</h2>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <h3>Select Directory</h3>
+            <p>Choose a folder to monitor. The scanner will recursively walk all files inside it.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <h3>Set Baseline</h3>
+            <p>Capture the current state. SHA-256 hashes are computed for every file and stored as the trusted reference.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <h3>Run Scans</h3>
+            <p>Re-hash all files and compare against the baseline. Any differences are flagged immediately.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num">4</div>
+            <h3>Get Alerts</h3>
+            <p>Added, modified, and deleted files are reported with colour-coded alerts and a full change history.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== Footer ====== -->
+      <footer class="footer">
+        <p>Built with <span>Python + Flask + hashlib</span> · SHA-256 File Integrity Monitoring · SIEM / EDR Concept</p>
+      </footer>
+
+    </div><!-- .container -->
+  </div><!-- .app-wrapper -->
+
+  <!-- Toast container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
