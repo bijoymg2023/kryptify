@@ -1,10 +1,10 @@
-# Zero-Knowledge File Integrity Monitor
+# Zero-Knowledge Kryptify
 
 A 100% Client-Side Web Application that detects unauthorized file modifications, additions, and deletions using advanced in-browser Cryptography. 
 
-This project implements core **Cybersecurity / SIEM** concepts (File Integrity Monitoring) but runs entirely within an isolated browser session, ensuring maximum privacy. 
+This project implements core **Cybersecurity / SIEM** concepts (Kryptifying) but runs entirely within an isolated browser session, ensuring maximum privacy. 
 
-![FIM Dashboard](https://raw.githubusercontent.com/bijoymg2023/File_Integrity_Monitor/main/screenshot.png) *(Note: screenshot placeholder)*
+![FIM Dashboard](https://raw.githubusercontent.com/bijoymg2023/Kryptify/main/screenshot.png) *(Note: screenshot placeholder)*
 
 ## 🔒 Zero-Knowledge Architecture
 
@@ -22,9 +22,9 @@ Unlike traditional FIM tools that require you to install Python agents and beam 
 
 1. Clone this repository or download the ZIP.
    ```bash
-   git clone https://github.com/bijoymg2023/File_Integrity_Monitor.git
+   git clone https://github.com/bijoymg2023/Kryptify.git
    ```
-2. Open the `File_Integrity_Monitor` folder in your file explorer.
+2. Open the `Kryptify` folder in your file explorer.
 3. Double-click `index.html` to open it in your browser.
 4. Click **📁 Select Local Folder**.
 5. Your browser will prompt you to grant permission to "View files in this folder". Click Allow.
