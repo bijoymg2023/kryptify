@@ -270,7 +270,7 @@ Step 3: Click "Run Integrity Scan"
 </p>
 
 <p align="center">
-  <img src="assets/dashboard.png" alt="Kryptify Dashboard" width="90%"/>
+  <img src="assets/dashboard_full.png" alt="Kryptify Dashboard" width="90%"/>
 </p>
 
 <p align="center">
@@ -279,7 +279,7 @@ Step 3: Click "Run Integrity Scan"
 </p>
 
 <p align="center">
-  <img src="assets/breach_detected.png" alt="Kryptify Breach Detection" width="90%"/>
+  <img src="assets/dashboard_bottom.png" alt="Kryptify Breach Detection" width="90%"/>
 </p>
 
 ---
